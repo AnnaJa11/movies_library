@@ -1,4 +1,5 @@
 import random
+from datetime import datetime
 
 class Movies:
     def __init__(self, title, year, genre):
@@ -54,56 +55,73 @@ def get_series():
     sorted_series = sorted(series_list, key=lambda ser: ser.title)
     for item in range (0,len(sorted_series)):
         print(sorted_series)
-
+my_list = []
 def generate_views():
     random_movie = random.choice(movies_base)
-    print(f'To jest random: {random_movie}')
     random_num = random. randint(1, 100)
     random_movie._visits_number = random_num
-    print(f' Ilosc odtworzen: {random_movie._visits_number}')
+    result = f'{random_movie} - number of visits: {random_movie._visits_number}\n'
+    print(result)
+    my_list.append(result)
+    return result
+print(my_list)
 
 def run_generate_views():
     for i in range(0,10):
         generate_views()
 
-def top_titles():
-    most_popular = sorted(movies_base, key=lambda movie: movie.title)
-    for item in range (0,len(movies_base)):
-        print(f'To sa najpopularniejsze: {most_popular}.')
+def top_titles(how_many):
+    for i in range(0,how_many):
+        print(my_list[i])
+    
 
-
-
-print(("Filmy i seriale ").upper())
+print((f"Biblioteka filmow \n").upper())
 
 if __name__ == "__main__":
     movie1 = Movies(title='The Godfather', year = 1972, genre = 'crime') 
     movie2 = Movies(title='Pulp Fiction', year = 1994, genre = 'crime')
     movie3 = Movies(title='Forrest Gump', year = 1994, genre = 'drama')
-    movie4 = Series(title='Our Planet', year=2008, genre='crime', season='S01', episode='E01')
-    movie5 = Series(title='Cosmos', year=2014, genre='crime', season='S01', episode='E01')
-    movie6 = Series(title='Breaking Bad', year=2019, genre='nature documentary', season='S01', episode='E01')
+    movie4 = Movies(title='Return To Legoland', year = 2021, genre = 'drama')
+    movie5 = Movies(title='Lamborghini', year = 2022, genre = 'sport/drama')
+    movie6 = Movies(title='#Alive', year = 2020, genre = 'action/horror')
+    movie7 = Series(title='Our Planet', year=2008, genre='crime', season='S01', episode='E01')
+    movie8 = Series(title='Cosmos', year=2014, genre='crime', season='S01', episode='E01')
+    movie9 = Series(title='Breaking Bad', year=2019, genre='nature documentary', season='S01', episode='E01')
 
-movies_list = [movie1, movie2, movie3]
-series_list = [movie4, movie5, movie6]
+movies_list = [movie1, movie2, movie3, movie4, movie5, movie6]
+series_list = [movie7, movie8, movie9]
 movies_base = movies_list + series_list
 
-
-movie_type = int(input('If you would like choose movies tape "1" if series then type "2": '))
-
-if movie_type == 1: 
-    get_movies()
-    user_movie_choice = input('Enter the movie title: ')
-    search(user_movie_choice)
-    
-       
-elif movie_type == 2:
-   get_series()
-   user_movie_choice = input('Enter the movie title: ')
-
-else: 
-    print('This is not correct option.')    
-
+print('Movies: \n')
+for i in range (0,len(movies_list)):
+    print(f'{movies_list[i]}\n')
+print('Series: \n')
+for i in range (0,len(series_list)):
+    print(f'{series_list[i]}\n')
 
 run_generate_views()
-top_titles()
+
+print(f"The most popular movies and series of the day {datetime.today().strftime('%d.%m.%Y')}\n")
+top_titles(3)
+
+
+
+
+# movie_type = int(input('If you would like choose movies tape "1" if series then type "2": '))
+
+# if movie_type == 1: 
+#     get_movies()
+#     user_movie_choice = input('Enter the movie title: ')
+#     search(user_movie_choice)
+    
+       
+# elif movie_type == 2:
+#    get_series()
+#    user_movie_choice = input('Enter the movie title: ')
+
+# else: 
+#     print('This is not correct option.')    
+
+
+
 
